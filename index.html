@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="An open source interactive desktop for the web."
+    />
+    <meta name="theme-color" content="#111013" />
+    <title>OS_MAN — A personal workspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" id="favicon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/workspace.css" />
+    <link rel="stylesheet" href="/signal.css" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="OS_MAN journal"
+      href="/feed.xml"
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#wm-viewport">Skip to workspace</a>
+    <canvas id="matrix-rain-canvas" aria-hidden="true"></canvas>
+    <div id="bg-custom-image" aria-hidden="true"></div>
+    <canvas id="bg-effects-canvas" aria-hidden="true"></canvas>
+    <div id="bg-lights" aria-hidden="true"></div>
+    <div id="global-scanlines" aria-hidden="true"></div>
+    <header class="system-bar">
+      <a class="wordmark" href="/" aria-label="OS_MAN home"
+        ><span class="logo-symbol">o_</span>OS_MAN<span class="wordmark-version"
+          >/ personal space</span
+        ></a
+      >
+      <nav class="workspace-switcher" aria-label="Workspaces">
+        <button
+          class="workspace-tab active"
+          data-workspace="home"
+          aria-pressed="true"
+        >
+          <span>01</span> home</button
+        ><button
+          class="workspace-tab"
+          data-workspace="play"
+          aria-pressed="false"
+        >
+          <span>02</span> playground
+        </button>
+      </nav>
+      <div class="system-time">
+        <button
+          id="mystery-button"
+          aria-label="Investigate the unknown signal"
+          title="Something is listening…"
+        >
+          ⟡
+        </button>
+        <span class="status-dot"></span><time id="system-clock">--:--</time
+        ><button
+          id="appearance-button"
+          aria-label="Appearance settings"
+          title="Appearance settings"
+        >
+          ◐
+        </button>
+      </div>
+    </header>
+    <main id="wm-viewport" tabindex="-1" aria-label="Personal workspace"></main>
+    <footer class="desktop-footer">
+      <span class="desktop-caption"
+        ><span class="status-dot"></span> a work in progress, just like
+        me.</span
+      ><span class="desktop-hint">drag a titlebar to rearrange ↔</span
+      ><span class="footer-links"
+        ><a href="/feed.xml">RSS ↗</a
+        ><a href="/privacy/">Privacy &amp; Cookies</a></span
+      >
+    </footer>
+    <nav class="app-dock" aria-label="Open an app">
+      <button data-app="welcome" title="About OS_MAN">
+        <span>⌂</span><span>Home</span></button
+      ><button data-app="journal" title="Journal">
+        <span>▤</span><span>Journal</span></button
+      ><button data-app="terminal" title="Terminal">
+        <span>&gt;_</span><span>Terminal</span></button
+      ><button data-app="guestbook" title="Guestbook">
+        <span>✎</span><span>Guestbook</span></button
+      ><span class="dock-divider"></span
+      ><button
+        id="fab-launcher"
+        title="All apps"
+        aria-label="All apps"
+        aria-haspopup="dialog"
+      >
+        <span>⊞</span><span>All apps</span>
+      </button>
+    </nav>
+    <div
+      id="launcher-overlay"
+      class="overlay hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="launcher-title"
+    >
+      <div class="overlay-panel">
+        <div class="dialog-heading">
+          <h2 id="launcher-title">Open something.</h2>
+          <button data-close-dialog aria-label="Close app launcher">✕</button>
+        </div>
+        <p class="overlay-hint">Tools, curiosities, and a few distractions.</p>
+        <div id="launcher-list" class="launcher-grid"></div>
+      </div>
+    </div>
+    <div
+      id="shortcut-overlay"
+      class="overlay hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="shortcut-title"
+    >
+      <div class="overlay-panel shortcut-panel">
+        <div class="dialog-heading">
+          <h2 id="shortcut-title">Keybindings</h2>
+          <button data-close-dialog aria-label="Close keybindings">✕</button>
+        </div>
+        <p class="overlay-hint">
+          Choose a binding, then press a new key combination.
+        </p>
+        <div id="shortcut-list"></div>
+      </div>
+    </div>
+    <div id="drag-ghost" class="drag-ghost hidden" aria-hidden="true"></div>
+    <div
+      id="drop-indicator"
+      class="drop-indicator hidden"
+      aria-hidden="true"
+    ></div>
+    <noscript
+      ><section class="noscript">
+        <h1>Welcome to OS_MAN.</h1>
+        <p>A personal space for technology, science, projects, and life.</p>
+        <a href="/journal/">Read the journal →</a>
+        <p>The interactive desktop needs JavaScript.</p>
+      </section></noscript
+    >
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

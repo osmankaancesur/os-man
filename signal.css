@@ -1,0 +1,477 @@
+#mystery-button {
+  color: var(--accent);
+  font-size: 25px;
+  text-shadow: 0 0 15px var(--accent);
+  transition: transform 0.4s;
+}
+#mystery-button:hover {
+  transform: rotate(90deg);
+}
+.signal-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  color-scheme: dark;
+  color: #edf2f6;
+  background: #050509;
+  border: 1px solid #496072;
+  padding: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100dvh - 32px);
+  border-radius: 24px;
+  font-family: var(--font-term, monospace);
+  box-shadow: 0 0 100px #26274955;
+}
+.signal-dialog::backdrop {
+  background: #020208e8;
+  backdrop-filter: blur(18px);
+}
+.signal-dialog button {
+  font: inherit;
+  font-size: 12px;
+  color: #dceaf0;
+  background: #121721cc;
+  border: 1px solid #58708088;
+  border-radius: 100px;
+  padding: 12px 20px;
+  cursor: pointer;
+  min-height: 44px;
+}
+.signal-dialog button:hover {
+  background: #233949;
+  border-color: #9be9ed;
+}
+.signal-dialog :focus-visible {
+  outline: 2px solid #a4fbff;
+  outline-offset: 4px;
+}
+.signal-dialog .signal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 44px;
+  padding: 0;
+  z-index: 10;
+}
+.signal-question-panel {
+  padding: 56px 60px 48px;
+  width: min(620px, calc(100vw - 36px));
+  box-sizing: border-box;
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 28%, #22313b90, transparent 60%);
+}
+.signal-kicker {
+  color: #8ab6c6;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  line-height: 1.8;
+}
+.signal-sigil {
+  font:
+    130px/1.2 Georgia,
+    serif;
+  color: #bce5ea;
+  text-shadow: 0 0 45px #58c6dd77;
+  animation: signal-orbit 18s linear infinite;
+  margin: 18px 0;
+}
+.signal-whisper,
+.signal-question-note {
+  font-size: 11px;
+  color: #9aa9b7;
+  line-height: 1.8;
+}
+.signal-question-panel h2 {
+  font: 500 clamp(34px, 6vw, 54px) / 1.13 var(--font-ui, sans-serif);
+  letter-spacing: -0.055em;
+  margin: 18px 0;
+}
+.signal-question-panel em {
+  font-family: Georgia, serif;
+  font-weight: 400;
+  color: #a4e6e4;
+}
+.signal-choices {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 32px;
+}
+.signal-choices button:first-child {
+  color: #061519;
+  background: #b3e9ea;
+  padding-inline: 28px;
+}
+.signal-dialog.signal-experience,
+.signal-dialog.signal-scare {
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+  overflow: hidden;
+}
+.anomaly-stage {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse, #121126 0%, #03030b 70%);
+  overflow: hidden;
+  touch-action: none;
+}
+.anomaly-solid,
+.anomaly-particles {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.anomaly-particles {
+  z-index: 1;
+}
+.anomaly-hud {
+  position: absolute;
+  inset: 35px 90px auto 35px;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  color: #c1dce8;
+  font-size: 10px;
+  letter-spacing: 0.13em;
+}
+.signal-live {
+  color: #9af5d1;
+}
+.anomaly-caption {
+  position: absolute;
+  z-index: 2;
+  bottom: 110px;
+  left: 5vw;
+  right: 5vw;
+  pointer-events: none;
+  text-shadow: 0 2px 35px #01040b;
+}
+.anomaly-caption h2 {
+  font: 500 clamp(35px, 6vw, 86px) / 1.1 var(--font-ui, sans-serif);
+  letter-spacing: -0.065em;
+  margin: 6px 0 12px;
+  color: #edf7ff;
+}
+.anomaly-description {
+  color: #b4cbd6;
+  font-size: 12px;
+}
+.anomaly-controls {
+  position: absolute;
+  z-index: 3;
+  bottom: 30px;
+  left: 5vw;
+  right: 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  font-size: 10px;
+  color: #adc0cf;
+}
+.anomaly-controls > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.anomaly-controls button {
+  backdrop-filter: blur(12px);
+}
+.anomaly-coordinates {
+  position: absolute;
+  right: 35px;
+  top: 45%;
+  color: #7997aa;
+  font-size: 10px;
+  line-height: 2.4;
+  letter-spacing: 0.15em;
+}
+.signal-crosshair {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border: 1px solid #8bd7e755;
+  z-index: 2;
+  pointer-events: none;
+}
+.signal-crosshair-a {
+  left: 28px;
+  top: 80px;
+  border-right: 0;
+  border-bottom: 0;
+}
+.signal-crosshair-b {
+  right: 28px;
+  bottom: 96px;
+  border-left: 0;
+  border-top: 0;
+}
+.signal-scare {
+  background: #130409;
+}
+.signal-face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  animation: signal-lunge 0.22s cubic-bezier(0.1, 0.8, 0.2, 1) both;
+}
+.signal-face svg {
+  width: min(110vw, 110vh);
+  height: min(110vw, 110vh);
+  filter: contrast(1.35) drop-shadow(0 0 50px #d9143155);
+}
+.signal-scare-caption {
+  position: absolute;
+  bottom: 8vh;
+  width: 100%;
+  text-align: center;
+  font: 700 clamp(12px, 2.5vw, 25px) var(--font-term);
+  color: #ffb9b9;
+  letter-spacing: 0.12em;
+  text-shadow: 0 2px 8px black;
+}
+.signal-video-panel {
+  width: min(880px, calc(100vw - 34px));
+  padding: 45px 28px 24px;
+  box-sizing: border-box;
+}
+.signal-video-panel h2 {
+  font: 500 34px var(--font-ui);
+  margin: 12px 0 25px;
+}
+/* A self-contained 80s transmission: no iframe, player, or media fetch. */
+.rick-stage {
+  position: relative;
+  isolation: isolate;
+  height: clamp(260px, 45vh, 390px);
+  overflow: hidden;
+  border: 1px solid #657499;
+  border-radius: 12px;
+  background: radial-gradient(
+    ellipse at 65% 20%,
+    #533c89,
+    #102c46 55%,
+    #070f23
+  );
+}
+.rick-grid {
+  position: absolute;
+  inset: 60% -50% -90%;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 38px, #72e5ee55 39px 40px),
+    repeating-linear-gradient(90deg, transparent 0 58px, #72e5ee55 59px 60px);
+  transform: perspective(200px) rotateX(50deg);
+  animation: rick-floor 1.44s linear infinite;
+}
+.rick-beam {
+  position: absolute;
+  width: 45%;
+  height: 160%;
+  top: -20%;
+  left: 18%;
+  background: linear-gradient(180deg, #86ffff66, transparent);
+  clip-path: polygon(48% 0, 52% 0, 100% 100%, 0 100%);
+  transform-origin: 50% 0;
+  animation: rick-light 4s ease-in-out infinite alternate;
+}
+.rick-beam-b {
+  left: 55%;
+  background: linear-gradient(180deg, #ff98ca77, transparent);
+  animation-delay: -2s;
+}
+.rick-channel {
+  position: absolute;
+  top: 16px;
+  left: 18px;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: #c1e0eb;
+}
+.rick-title {
+  position: absolute;
+  left: 5%;
+  top: 27%;
+  color: #eed6f8;
+  font: 900 clamp(40px, 8vw, 86px) / 0.85 var(--font-ui, sans-serif);
+  letter-spacing: -0.06em;
+  transform: rotate(-7deg);
+  text-shadow:
+    3px 3px #c43a85,
+    6px 6px #4b255e;
+}
+.rick-performer {
+  position: absolute;
+  height: 100%;
+  width: 65%;
+  right: 0;
+  bottom: 0;
+  filter: drop-shadow(0 0 14px #8ce8ff44);
+}
+.rick-dance {
+  transform-origin: 180px 390px;
+  animation: rick-sway 0.72s ease-in-out infinite alternate;
+}
+.rick-torso {
+  transform-origin: 180px 250px;
+  animation: rick-sway 0.72s ease-in-out infinite alternate-reverse;
+}
+.rick-arm-left {
+  transform-origin: 140px 140px;
+  animation: rick-arm 0.72s ease-in-out infinite alternate;
+}
+.rick-arm-right {
+  transform-origin: 215px 140px;
+  animation: rick-arm 0.72s ease-in-out infinite alternate-reverse;
+}
+.rick-head {
+  transform-origin: 180px 125px;
+  animation: rick-sway 0.36s ease-in-out infinite alternate;
+}
+.rick-leg-left {
+  transform-origin: 163px 250px;
+  animation: rick-step 0.72s ease-in-out infinite alternate;
+}
+.rick-leg-right {
+  transform-origin: 199px 250px;
+  animation: rick-step 0.72s ease-in-out infinite alternate-reverse;
+}
+.rick-caption {
+  position: absolute;
+  bottom: 15px;
+  left: 18px;
+  color: #b0f3e8;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+}
+.rick-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: 18px;
+  font-size: 11px;
+}
+.rick-controls a {
+  padding: 12px 0;
+  margin-left: auto;
+}
+.rick-paused * {
+  animation-play-state: paused !important;
+}
+@keyframes rick-sway {
+  from {
+    transform: rotate(-5deg);
+  }
+  to {
+    transform: rotate(5deg);
+  }
+}
+@keyframes rick-arm {
+  from {
+    transform: rotate(-12deg);
+  }
+  to {
+    transform: rotate(9deg);
+  }
+}
+@keyframes rick-step {
+  from {
+    transform: rotate(-4deg);
+  }
+  to {
+    transform: rotate(4deg);
+  }
+}
+@keyframes rick-light {
+  from {
+    transform: rotate(-32deg);
+  }
+  to {
+    transform: rotate(32deg);
+  }
+}
+@keyframes rick-floor {
+  to {
+    background-position:
+      0 40px,
+      0 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rick-stage * {
+    animation: none !important;
+  }
+}
+.signal-video-panel a {
+  color: #b0eaf2;
+}
+@keyframes signal-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes signal-lunge {
+  from {
+    transform: scale(0.4) rotate(-8deg);
+    opacity: 0.4;
+  }
+  to {
+    transform: scale(1.08) rotate(2deg);
+    opacity: 1;
+  }
+}
+@media (max-width: 700px) {
+  .signal-question-panel {
+    padding: 48px 22px 30px;
+  }
+  .signal-sigil {
+    font-size: 95px;
+  }
+  .anomaly-hud {
+    left: 20px;
+    top: 28px;
+    font-size: 8px;
+  }
+  .signal-live,
+  .anomaly-coordinates {
+    display: none;
+  }
+  .anomaly-caption {
+    bottom: 155px;
+  }
+  .anomaly-description {
+    max-width: 250px;
+    line-height: 1.7;
+  }
+  .anomaly-controls {
+    bottom: max(22px, env(safe-area-inset-bottom));
+    flex-direction: column;
+    align-items: start;
+  }
+  .anomaly-controls button {
+    padding: 10px 14px;
+    font-size: 10px;
+  }
+  .signal-video-panel {
+    padding-inline: 15px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .signal-sigil,
+  .signal-face {
+    animation: none;
+  }
+}
